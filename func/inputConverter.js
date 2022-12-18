@@ -35,6 +35,8 @@ export function inputConverter(input) {
             cmd.push(temp[0]);
             return cmd.concat(args.join('').split('|'))
         }
+        cmd = input.split(' ');
+        return cmd;
     }
 
     if(input.split(' ').length > 2) {
