@@ -2,6 +2,8 @@ import { homedir, EOL } from 'os';
 import { createInterface } from 'readline';
 import { ls } from './func/ls.js';
 import { os } from './func/os.js';
+import { currentDir } from './func/currentDirectory.js';
+import { up } from './func/up.js';
 
 let userName = 'Anonymous';
 if (process.argv.length > 2) {
@@ -12,7 +14,7 @@ if (process.argv.length > 2) {
 console.log(`Welcome to the File Manager, ${userName}!`, EOL);
 
 process.chdir(homedir());
-console.log(`You are currently in ${process.cwd()}`, EOL);
+currentDir();
 
 const readline = createInterface(process.stdin, process.stdout);
 
@@ -37,8 +39,14 @@ readline.on('line', async (input) => {
                 os(cmd[1]);
                 break;
             }
+        case 'up':
+            if (cmd.length === 1) {
+                up();
+                break;
+            }
         default:
             console.log('Invalid input', EOL);
+            currentDir();
     };
 });
 
