@@ -6,6 +6,7 @@ import { currentDir } from './func/currentDirectory.js';
 import { up } from './func/up.js';
 import { cd } from './func/cd.js';
 import { inputConverter } from './func/inputConverter.js';
+import { cat } from './func/cat.js';
 
 let userName = 'Anonymous';
 if (process.argv.length > 2) {
@@ -50,6 +51,11 @@ readline.on('line', async (input) => {
         case 'cd':
             if (cmd.length === 2) {
                 cd(cmd[1]);
+                break;
+            }
+        case 'cat':
+            if (cmd.length === 2) {
+                cat(cmd[1]);
                 break;
             }
         default:
