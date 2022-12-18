@@ -14,6 +14,7 @@ import { rn } from './func/rn.js';
 import { compress } from './func/compress.js';
 import { decompress } from './func/decompress.js';
 import { cp } from './func/cp.js';
+import { mv } from './func/mv.js';
 
 let userName = 'Anonymous';
 if (process.argv.length > 2) {
@@ -98,6 +99,11 @@ readline.on('line', async (input) => {
         case 'cp':
             if (cmd.length === 3) {
                 cp(cmd[1], cmd[2]);
+                break;
+            }
+        case 'mv':
+            if (cmd.length === 3) {
+                mv(cmd[1], cmd[2]);
                 break;
             }
         default:
