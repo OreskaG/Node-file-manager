@@ -7,6 +7,7 @@ import { up } from './func/up.js';
 import { cd } from './func/cd.js';
 import { inputConverter } from './func/inputConverter.js';
 import { cat } from './func/cat.js';
+import { add } from './func/add.js';
 
 let userName = 'Anonymous';
 if (process.argv.length > 2) {
@@ -56,6 +57,11 @@ readline.on('line', async (input) => {
         case 'cat':
             if (cmd.length === 2) {
                 cat(cmd[1]);
+                break;
+            }
+        case 'add':
+            if (cmd.length === 2) {
+                add(cmd[1]);
                 break;
             }
         default:
