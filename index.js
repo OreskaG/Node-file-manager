@@ -13,6 +13,7 @@ import { hash } from './func/hash.js';
 import { rn } from './func/rn.js';
 import { compress } from './func/compress.js';
 import { decompress } from './func/decompress.js';
+import { cp } from './func/cp.js';
 
 let userName = 'Anonymous';
 if (process.argv.length > 2) {
@@ -92,6 +93,11 @@ readline.on('line', async (input) => {
         case 'decompress':
             if (cmd.length === 3) {
                 decompress(cmd[1], cmd[2]);
+                break;
+            }
+        case 'cp':
+            if (cmd.length === 3) {
+                cp(cmd[1], cmd[2]);
                 break;
             }
         default:
