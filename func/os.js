@@ -6,7 +6,7 @@ export function os(cmd) {
             console.log(JSON.stringify(EOL), EOL);
             break;
         case '--cpus':
-            const result = cpus().map( i => { return { model: i.model, speed: `${ i.speed / 1000 } GHz`} })
+            const result = cpus().map( i => { return { Model: i.model, Speed: `${ i.speed / 1000 } GHz`} });
             console.table(result);
             break;
         case '--homedir':
