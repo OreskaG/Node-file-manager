@@ -6,7 +6,7 @@ export function cd(cmd) {
     try {
         process.chdir(resolve(cmd))
     } catch {
-        console.log('Invalid input', EOL);
+        console.log('Operation failed', EOL);
     } finally {
         currentDir();
     }

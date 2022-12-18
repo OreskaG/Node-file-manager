@@ -1,10 +1,11 @@
-import { writeFile } from 'fs/promises';
-import { EOL } from 'os';
 import { currentDir } from "./currentDirectory.js";
+import { rm } from 'fs/promises';
+import { resolve } from 'path';
+import { EOL } from 'os';
 
-export async function add(cmd) {
+export async function remove(cmd) {
     try {
-        await writeFile(cmd, '', { flag: 'wx'});
+        await rm(resolve(cmd));
     } catch {
         console.log('Operation failed', EOL);
     } finally {

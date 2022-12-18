@@ -25,7 +25,7 @@ export function os(cmd) {
             currentDir();
             break;
         default:
-            console.log('Invalid input', EOL);
+            console.log('Operation failed', EOL);
             currentDir();
     };
 }
