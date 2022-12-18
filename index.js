@@ -10,6 +10,7 @@ import { cat } from './func/cat.js';
 import { add } from './func/add.js';
 import { remove } from './func/rm.js';
 import { hash } from './func/hash.js';
+import { rn } from './func/rn.js';
 
 let userName = 'Anonymous';
 if (process.argv.length > 2) {
@@ -74,6 +75,11 @@ readline.on('line', async (input) => {
         case 'rm':
             if (cmd.length === 2) {
                 remove(cmd[1]);
+                break;
+            }
+        case 'rn':
+            if (cmd.length === 3) {
+                rn(cmd[1], cmd[2]);
                 break;
             }
         default:
