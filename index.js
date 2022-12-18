@@ -1,5 +1,6 @@
 import { homedir, EOL } from 'os';
 import { createInterface } from 'readline';
+import { ls } from './func/ls.js';
 
 let userName = 'Anonymous';
 if (process.argv[2].startsWith('--username=')) {
@@ -12,13 +13,15 @@ console.log(`You are currently in ${process.cwd()}`, EOL);
 
 const readline = createInterface(process.stdin, process.stdout);
 
-readline.on('line', (input) => {
-
-    switch (input) {
+readline.on('line', async (input) => {
+    switch (input.split(' ')[0]) {
         case '.exit':
             readline.question('Are you sure you want to exit?(y/yes) ', (answer) => {
                 if (answer.match(/^y(es)?$/i)) readline.close();
             });
+            break;
+        case 'ls':
+            ls();
             break;
         default:
             console.log('Invalid input', EOL);
