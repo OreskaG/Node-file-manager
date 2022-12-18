@@ -4,6 +4,8 @@ import { ls } from './func/ls.js';
 import { os } from './func/os.js';
 import { currentDir } from './func/currentDirectory.js';
 import { up } from './func/up.js';
+import { cd } from './func/cd.js';
+import { inputConverter } from './func/inputConverter.js';
 
 let userName = 'Anonymous';
 if (process.argv.length > 2) {
@@ -19,7 +21,8 @@ currentDir();
 const readline = createInterface(process.stdin, process.stdout);
 
 readline.on('line', async (input) => {
-    const cmd = input.split(' ');
+
+    const cmd = inputConverter(input);
 
     switch (cmd[0]) {
         case '.exit':
@@ -42,6 +45,11 @@ readline.on('line', async (input) => {
         case 'up':
             if (cmd.length === 1) {
                 up();
+                break;
+            }
+        case 'cd':
+            if (cmd.length === 2) {
+                cd(cmd[1]);
                 break;
             }
         default:
