@@ -1,10 +1,13 @@
 import { homedir, EOL } from 'os';
 import { createInterface } from 'readline';
 import { ls } from './func/ls.js';
+import { os } from './func/os.js';
 
 let userName = 'Anonymous';
-if (process.argv[2].startsWith('--username=')) {
-    userName = process.argv[2].split('=')[1];
+if (process.argv.length > 2) {
+    if (process.argv[2].startsWith('--username=')) {
+        userName = process.argv[2].split('=')[1];
+    };
 };
 console.log(`Welcome to the File Manager, ${userName}!`, EOL);
 
@@ -14,15 +17,26 @@ console.log(`You are currently in ${process.cwd()}`, EOL);
 const readline = createInterface(process.stdin, process.stdout);
 
 readline.on('line', async (input) => {
-    switch (input.split(' ')[0]) {
+    const cmd = input.split(' ');
+
+    switch (cmd[0]) {
         case '.exit':
-            readline.question('Are you sure you want to exit?(y/yes) ', (answer) => {
-                if (answer.match(/^y(es)?$/i)) readline.close();
-            });
-            break;
+            if (cmd.length === 1) {
+                readline.question('Are you sure you want to exit?(y/yes) ', (answer) => {
+                    if (answer.match(/^y(es)?$/i)) readline.close();
+                });
+                break;
+            }
         case 'ls':
-            ls();
-            break;
+            if (cmd.length === 1) {
+                ls();
+                break;
+            }
+        case 'os':
+            if (cmd.length === 2) {
+                os(cmd[1]);
+                break;
+            }
         default:
             console.log('Invalid input', EOL);
     };
